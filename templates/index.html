@@ -1,0 +1,83 @@
+{% set navigation_menu = [
+    ('index', '/'),
+    ('projects', '/projects'),
+    ('resume', '/resume'),
+    ('contact', '/contact'),
+    ('gigography', '/gigography')
+] %}
+{% set active_menu_item = active_menu_item|default('index') %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>steve harris {% block title %}{% endblock %}</title>
+        <style type="text/css">
+            a {
+                color: white;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #a8a8a8;
+            }
+            body {
+                background-color: black;
+                color: white;
+            }
+            body, pre {
+                font-family: sans-serif;
+            }
+            h1 {
+                color: #606060;
+            }
+            h2 {
+                color: red;
+            }
+            h2:first-of-type, ul {
+                margin-top: 0px;
+            }
+            pre {
+                white-space: pre-line;
+            }
+            #container {
+                display: table-row;
+            }
+            #navigation-menu {
+                display: table-cell;
+                text-align: right;
+                vertical-align: top;
+            }
+            #navigation-menu li {
+                color: white;
+                list-style-type: none;
+            }
+            #navigation-menu li:hover {
+                color: #a8a8a8;
+            }
+            #content {
+                display: table-cell;
+                padding-left: 30px;
+            }
+            .active-menu-item {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <h1>steve harris</h1>
+        </div>
+        <div id="container">
+            <div id="navigation-menu">
+                <ul>
+                    {% for id, location in navigation_menu %}
+                        <li {% if id == active_menu_item %}class="active-menu-item"{% endif %}>
+                            <a href="{{ location  }}">/{{ id }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
