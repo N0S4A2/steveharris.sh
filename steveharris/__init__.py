@@ -1,4 +1,8 @@
 from flask import Flask, render_template
+import os
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(APP_ROOT, 'static')
 
 app = Flask(__name__)
 
@@ -16,7 +20,7 @@ def gigography():
 
 @app.route('/moshington')
 def moshington():
-    with open('static/moshington.ics') as shows_file:
+    with open(os.path.join(STATIC_ROOT, 'moshington.ics')) as shows_file:
         shows = []
         for line in shows_file:
             # Parsing iCalendar file, hence the syntax
@@ -46,4 +50,4 @@ def resume():
     return render_template('resume.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, port=8000)
