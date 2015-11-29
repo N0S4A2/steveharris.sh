@@ -14,6 +14,29 @@ def contact():
 def gigography():
     return render_template('gigography.html')
 
+@app.route('/moshington')
+def moshington():
+    with open('static/moshington.ics') as shows_file:
+        shows = []
+        for line in shows_file:
+            # Parsing iCalendar file, hence the syntax
+            if line.startswith('DTSTART'):
+                date = line.split(':')[1]
+                date = date[4:6] + '/' + date[6:]
+                show = {'date': date}
+            elif line.startswith('SUMMARY'):
+                # TODO Support band names with ':' or '@' characters
+                lineup, venue = line.split(':')[1].split('@')
+                show['lineup'] = lineup
+                show['venue'] = venue
+                shows.append(show)
+    return render_template('moshington.html', shows=shows)
+
+@app.route('/moshington.ics')
+def moshington_ics():
+    # TODO Configure the web server to serve the file
+    return app.send_static_file('moshington.ics')
+
 @app.route('/projects')
 def projects():
     return render_template('projects.html')

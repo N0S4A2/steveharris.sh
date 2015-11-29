@@ -3,7 +3,8 @@
     ('projects', '/projects'),
     ('resume', '/resume'),
     ('contact', '/contact'),
-    ('gigography', '/gigography')
+    ('gigography', '/gigography'),
+    ('moshington', '/moshington')
 ] %}
 {% set active_menu_item = active_menu_item|default('index') %}
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
         <title>steve harris {% block title %}{% endblock %}</title>
         <style type="text/css">
             a {
-                color: white;
+                color: #c3c3c3;
                 text-decoration: none;
             }
             a:hover {
@@ -29,7 +30,7 @@
                 color: #606060;
             }
             h2 {
-                color: red;
+                color: #606060;
             }
             h2:first-of-type, ul {
                 margin-top: 0px;
@@ -37,8 +38,22 @@
             pre {
                 white-space: pre-line;
             }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td, th {
+                padding: 5px;
+                text-align: left;
+            }
+            tr:nth-child(odd) {
+                background-color: #202020;
+            }
             #container {
                 display: table-row;
+            }
+            #content {
+                font-size: 90%;
             }
             #navigation-menu {
                 display: table-cell;

@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% set active_menu_item = 'moshington' %}
+{% block title %}- Moshington{% endblock %}
+{% block content %}
+    <h2>Moshington</h2>
+    <p>Upcoming metal shows in Seattle - and sometimes elsewhere!</p>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Lineup</th>
+            <th>Venue</th>
+        </tr>
+        {% for show in shows %}
+        <tr>
+            <td>{{show['date']}}</td>
+            <td>{{show['lineup']}}</td>
+            <td>{{show['venue']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/moshington.ics">Download in iCalendar format</a> or <a href="https://github.com/N0S4A2/moshington/issues/new">suggest additions</a>.</p>
+{% endblock %}
