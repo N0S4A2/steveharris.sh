@@ -1,6 +1,12 @@
-from __future__ import unicode_literals
 from flask import Flask, render_template
-import os
+import os, sys
+
+# Deal with it!
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+except:
+    pass
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(APP_ROOT, 'static')
